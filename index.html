@@ -1,4 +1,8 @@
-    <script>
+<input type=text id=name placeholder="Enter your NAME"><br><br>
+<input type=text id=age placeholder="Enter your AGE"><br><br>
+<button onclick=recall() >Click to RECALL</button>
+
+<script>
     // A custom function to set cookies
     function setCookie(name, value, daysToLive) {
         // Encode value in order to escape semicolons, commas, and whitespace
@@ -8,7 +12,6 @@
             /* Sets the max-age attribute so that the cookie expires
             after the specified number of days */
             cookie += "; max-age=" + (daysToLive*24*60*60);
-    
             document.cookie = cookie;
         }
     }
@@ -37,25 +40,28 @@
     // A custom function to check cookies
     function checkCookie() {
         // Get cookie using our custom function
-        var firstName = getCookie("firstName");
-    
-        if(firstName != null) {
-            alert("Welcome again, " + firstName);
-        } else {
-            firstName = prompt("Please enter your first name:");
-            if(firstName != "" && firstName != null) {
-                // Set cookie using our custom function
-                setCookie("firstName", firstName, 1);
-            }
-        }
+        var name = getCookie("name");
+        alert(getCookie("name"));
+        document.getElementById("name").value=name;
+        
+        var age = getCookie("age");
+        document.getElementById("age").value=age;
+            
     }
+    
+    
+    function recall() {
+    alert(document.getElementById("name").value);
+    setCookie("name", document.getElementById("name").value, 1);
+    setCookie("age", document.getElementById("age").value, 1);
+    }
+    
     
     // Check the cookie on page load
     window.onload = checkCookie;
 
 	// Uncomment the following line to delete this cookie
 	// setCookie("firstName", "", 0);
+    // setCookie("firstName", firstName, 1);
     </script>
-    <p><strong>Note:</strong> Now if you press the "Show Output" button or refresh the page, you will see a greeting message, if you've entered your first name in the prompt dialog box. See the last line of the JavaScript code to know how to delete this <b>firstName</b> cookie.</p>
-</body>
-</html>
+   
